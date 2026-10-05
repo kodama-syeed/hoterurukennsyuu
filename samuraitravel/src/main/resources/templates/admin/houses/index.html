@@ -69,7 +69,7 @@
 
 								<tr>
 
-									><th scope="col"ID</th>
+									><th scope="col" ID</th>
 
 									<th scope="col">民宿名</th>
 
@@ -80,12 +80,16 @@
 									<th scope="col">電話番号</th>
 
 									<th scope="col"></th>
+									
+								</tr>
 
 							</thead>
 
 							<tbody>
 
 								<tr th:each="house : ${houses}">
+									
+									<tr th:each="house:${housePage}">
 
 									<td th:text="${house.getId()}"></td>
 
