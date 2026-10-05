@@ -2,7 +2,7 @@
 
 <html xmlns:th="https://www.thymeleaf.org">
 
-<heads>
+<head>
 
 	<meta charset="UTF-8">
 
@@ -25,7 +25,7 @@
 
 	<title>民宿一覧</title>
 
-</heads>
+</head>
 
 <body>
 
@@ -58,123 +58,126 @@
 						<h1 class="mb-4 text-center">民宿一覧</h1>
 
 						<div class="d-flex justify-content-end">
-							
-							<div class="d-flex justify-content-between align-itmes-end flex-wrap" >
-								
-								<form method="get"th:action="@{/admin/houses}"class="mb-3">
-									
+
+							<div class="d-flex justify-content-between align-items-end flex-wrap">
+
+								<form method="get" th:action="@{/admin/houses}" class="mb-3">
+
 									<div class="input-group">
-										
-										<input type="text" class="form-control"name="keyword"th:value="${keyword}"placeholder="民宿名">
-										
-										<button type="submit"class="btn text-while shadow-sm samuraitravel-btn">検索</button>
-										
+
+										<input type="text" class="form-control" name="keyword" th:value="${keyword}"
+											placeholder="民宿名">
+
+										<button type="submit"
+											class="btn text-white shadow-sm samuraitravel-btn">検索</button>
+
 									</div>
-									
+
 								</form>
-								
-								
-
-							<a href="#" class="btn text-white shadow-smmb-3 samuraitravel-btn">登録</a>
-
-						</div>
-
-						<table class="table">
-
-							<thead>
-
-								<tr>
-
-									<th scope="col" ID</th>
-
-									<th scope="col">民宿名</th>
-
-									<th scope="col">郵便番号</th>
-
-									<th scope="col">住所</th>
-
-									<th scope="col">電話番号</th>
-
-									<th scope="col"></th>
-
-								</tr>
-
-							</thead>
-
-							<tbody>
 
 
 
-								<tr th:each="house:${housePage}">
+								<a href="#" class="btn text-white shadow-sm mb-3 samuraitravel-btn">登録</a>
 
-									<td th:text="${house.getId()}"></td>
+							</div>
 
-									<td th:text="${house.getName()}"></td>
+							<table class="table">
 
-									<td th:text="${house.getPostalCode()}"></td>
+								<thead>
 
-									<td th:text="${house.getAddress()}"></td>
+									<tr>
 
-									<td th:text="${house.getPhoneNumber()}"></td>
+										<th scope="col">ID</th>
 
-									<td><a href="#">詳細</a></td>
+										<th scope="col">民宿名</th>
 
-								</tr>
+										<th scope="col">郵便番号</th>
 
-							</tbody>
+										<th scope="col">住所</th>
 
-						</table>
+										<th scope="col">電話番号</th>
 
-						<!--ページネーション-->
+										<th scope="col"></th>
 
-						<div th:if="${housePage.getTotalPages()>1}" class="d-flex justify-content-center">
+									</tr>
 
-							<nav aria-label="民宿一覧ページ">
+								</thead>
 
-								<ul class="pagination">
-
-									<li class="page-item">
-
-										<span th:if="${housePage.isFirst()}" class="page-link disabled">前</span>
+								<tbody>
 
 
-										<a th:unless="${housePage.isFirst()}"
-											th:href="@{/admin/houses(page=${housePage.getNumber()-1},keyword=${keyword})}"
-											class="page-link samuraitravel-page-link">前</a>
 
-									</li>
+									<tr th:each="house:${housePage}">
 
-									<li th:each="i:${#numbers.sequence(0,housePage.getTotalPages()-1)}"
-										class="page-item">
+										<td th:text="${house.getId()}"></td>
 
-										<span th:if="${i==housePage.getNumber()}"
-											class="page-link active samuraitoravel-active" th:text="${i+1}"></span>
+										<td th:text="${house.getName()}"></td>
 
-										<a th:unless="${i==housePage.getNumber()}" th:href="@{/admin/houses(page=${i},keyword=${keyword})}"
-											class="page-link samuraitravel-page-link" th:text="${i+1}"></a>
+										<td th:text="${house.getPostalCode()}"></td>
 
-									</li>
+										<td th:text="${house.getAddress()}"></td>
 
-									<li class="page-item">
+										<td th:text="${house.getPhoneNumber()}"></td>
 
-										<span th:if="${housePage.isLast()}" class="page-link disabad">次</span>
+										<td><a href="#">詳細</a></td>
 
-										<a th:unless="${housePage.isLast()}"
-											th:href="@{/admin/houses(page=${housePage.getNumber()+1},keyword=${keyword})}"
-											class="page-link samuraitravel-page-link">次</a>
-									</li>
+									</tr>
 
-								</ul>
+								</tbody>
 
-							</nav>
+							</table>
 
-							<div>
+							<!--ページネーション-->
+
+							<div th:if="${housePage.getTotalPages()>1}" class="d-flex justify-content-center">
+
+								<nav aria-label="民宿一覧ページ">
+
+									<ul class="pagination">
+
+										<li class="page-item">
+
+											<span th:if="${housePage.isFirst()}" class="page-link disabled">前</span>
+
+
+											<a th:unless="${housePage.isFirst()}"
+												th:href="@{/admin/houses(page =${housePage.getNumber()-1},keyword =${keyword})}"
+												class="page-link samuraitravel-page-link">前</a>
+
+										</li>
+
+										<li th:each="i:${#numbers.sequence(0,housePage.getTotalPages()-1)}"
+											class="page-item">
+
+											<span th:if="${i==housePage.getNumber()}"
+												class="page-link active samuraitravel-active" th:text="${i+1}"></span>
+
+											<a th:unless="${i==housePage.getNumber()}"
+												th:href="@{/admin/houses(page=${i},keyword=${keyword})}"
+												class="page-link samuraitravel-page-link" th:text="${i+1}"></a>
+
+										</li>
+
+										<li class="page-item">
+
+											<span th:if="${housePage.isLast()}" class="page-link disabled">次</span>
+
+											<a th:unless="${housePage.isLast()}"
+												th:href="@{/admin/houses(page=${housePage.getNumber()+1},keyword=${keyword})}"
+												class="page-link samuraitravel-page-link">次</a>
+										</li>
+
+									</ul>
+
+								</nav>
+
+								<div>
+
+								</div>
 
 							</div>
 
 						</div>
-
-					</div>
 
 		</main>
 
@@ -182,7 +185,7 @@
 
 		<footer>
 
-			<div class="d-flex justify-content-centeralign-items-center h-100">
+			<div class="d-flex justify-content-center align-items-center h-100">
 
 				<p class="text-center text-muted small mb-0">&copy;samurai Travel All rights reserved.</p>
 
@@ -200,4 +203,4 @@
 
 </body>
 
-</head>
+</html>
