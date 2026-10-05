@@ -57,7 +57,22 @@ footer {
 	opacity: 0.8;
 }
 
-@media screen and(min-weigh : 1400px) {
+.samuraitravel-page-link {
+	color: #5196a6;
+}
+
+
+.samuraitravel-page-link:hover {
+	color: #407784;
+}
+
+.samuraitravel-active {
+	background-color: #5196a6 !important;
+	border-color: #5196a6 !important;
+}
+
+
+@media screen and (min-widgh : 1400px) {
 	.samuraitravel-container {
 		max-width: 1200px;
 	}
