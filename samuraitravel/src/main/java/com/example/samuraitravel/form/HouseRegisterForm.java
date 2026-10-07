@@ -14,7 +14,7 @@ public class HouseRegisterForm {
 
 	private String name;
 
-	private MultipartFile imaFile;
+	private MultipartFile imageFile;
 
 	@NotBlank(message = "説明を入力してください。")
 
