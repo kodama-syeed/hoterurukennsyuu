@@ -76,8 +76,29 @@ public class HouseService {
 			String imageName=imageFile.getOriginalFilename();
 			
 			String hashedImageName=generateNewFileName(imageName);
+			
+			Path filePath=Paths.get("src/main/resources/static/storage/"+hashedImageName);
+			
+			copyImageFile(imageFile, filePath);
+			
+			house.setImageName(hashedImageName);
 		}
 		
+		house.setName(houseEditForm.getName());
+		
+		house.setDescription(houseEditForm.getDescription());
+		
+		house.setPrice(houseEditForm.getPrice());
+		
+		house.setCapacity(houseEditForm.getCapacity());
+		
+		house.setPostalCode(houseEditForm.getPostalCode());
+		
+		house.setAddress(houseEditForm.getAddress());
+		
+		house.setPhoneNumber(houseEditForm.getPhoneNumber());
+		
+		houseRepository.save(house);
 	}
 	
 	
@@ -85,7 +106,7 @@ public class HouseService {
 	//UUIDを使って生成したファイル名を返す
 
 	public String generateNewFileName(String fileName) {
-		String[] fileNames=fileName.split("\\\\.");
+		String[] fileNames=fileName.split("\\.");
 			
 		for(int i=0; i<fileNames.length-1;i++) {
 		fileNames[i]=UUID.randomUUID().toString();
