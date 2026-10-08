@@ -22,7 +22,7 @@ public class HouseEditForm {
 	
 	private String name;
 	
-	private MultipartFile imaFile;
+	private MultipartFile imageFile;
 	
 	@NotBlank(message = "説明を入力してください。")
 	
@@ -42,7 +42,7 @@ public class HouseEditForm {
 	
 	@NotBlank(message="郵便番号を入力してください。")
 	
-	private String postaCode;
+	private String postalCode;
 	
 	@NotBlank(message="住所を入力してください。")
 	
@@ -50,9 +50,6 @@ public class HouseEditForm {
 	
 	@NotBlank(message = "電話番号を入力してください。")
 	
-	private String phoneNumber;
-	
-	
-	
+	private String phoneNumber;			
 	
 }
