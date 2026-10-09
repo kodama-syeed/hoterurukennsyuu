@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 		
 		.authorizeHttpRequests((requests)->requests
 		
-		.requestMatchers("/css/**","/images/**","/js/**","/storage/**","/").permitAll()
+		.requestMatchers("/css/**","/images/**","/js/**","/storage/**","/","/signup/**").permitAll()
 		
 		.requestMatchers("/admin/**").hasRole("ADMIN")
 		
@@ -38,7 +38,7 @@ public class WebSecurityConfig {
 				
 				.loginProcessingUrl("/login")
 				
-				.defaultSuccessUrl("/?loggedIn/")
+				.defaultSuccessUrl("/?loggedIn")
 				
 				.failureUrl("/login?error")
 				
