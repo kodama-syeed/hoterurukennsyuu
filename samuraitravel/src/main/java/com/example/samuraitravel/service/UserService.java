@@ -3,6 +3,7 @@ package com.example.samuraitravel.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.example.samuraitravel.entity.Role;
 import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.form.SignupForm;
@@ -49,8 +50,8 @@ public class UserService {
 		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
 
 		user.setRole(role);
-
-		user.setEnabled(true);
+		
+		user.setEnabled(false);
 
 		return userRepository.save(user);
 	}
@@ -67,4 +68,12 @@ public class UserService {
 		return password.equals(passwordConfirmation);
 	}
 	
+	@Transactional
+	
+	public void enableUser(User user) {
+		
+		user.setEnabled(true);
+		
+		userRepository.save(user);
+	}
 }
