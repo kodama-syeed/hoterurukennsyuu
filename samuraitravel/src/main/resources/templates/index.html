@@ -1,56 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-		<div th:replace="~{fragment::meta}"></div>
+	<div th:replace="~{fragment::meta}"></div>
 
-		<div th:replace="~{fragment::styles}"></div>
+	<div th:replace="~{fragment::styles}"></div>
 
 
-		<title>samurai Travel</title>
-	</head>
+	<title>samurai Travel</title>
+</head>
 
-	<body>
-		<p>Hello, world!</p>
+<body>
+	<div th:if="${param.loggedOut}" class="alert alert-info">
 
-		<div class="samurai-wrapper">
+		ログアウトしました。
 
-			<!--ヘッダー-->
+	</div>
 
-			<div th:replace="~{fragment::header}"></div>
+	<div th:if="${successMessage}" class="alert alert-info">
 
-			<main>
+		<span th:text="${successMessage}"></span>
 
-				<div class="container pt-4 pb-5 samuraitravel-container">
 
-					<div th:if="${param.loggedIn}" class="alert alert-info">
+	</div>
+	
+	</div>
 
-						ログインしました。
+	<div class="samurai-wrapper">
 
-					</div>
+		<!--ヘッダー-->
 
-					<div th:if="${param.loggedOut}" class="alert alert-info">
+		<div th:replace="~{fragment::header}"></div>
 
-						ログアウトしました。
+		<main>
 
-					</div>
+			<div class="container pt-4 pb-5 samuraitravel-container">
+
+				<div th:if="${param.loggedIn}" class="alert alert-info">
+
+					ログインしました。
 
 				</div>
 
-			</main>
 
-			<!--フッター-->
+		</main>
 
-			<div th:replace="~{fragment::footer}"></div>
+		<!--フッター-->
 
-		</div>
+		<div th:replace="~{fragment::footer}"></div>
 
-		<div th:replace="~{fragment::scripts}"></div>
-	</body>
+	</div>
 
-	</html>
+	<div th:replace="~{fragment::scripts}"></div>
+</body>
 
-	copy
+</html>
