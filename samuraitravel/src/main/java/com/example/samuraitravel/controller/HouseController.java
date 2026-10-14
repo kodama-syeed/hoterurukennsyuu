@@ -28,7 +28,7 @@ public class HouseController {
 
 	public String index(@RequestParam(name = "keyword", required = false) String keyword,
 			@RequestParam(name = "area", required = false) String area,
-			@RequestParam(name = "price", required = false) String price,
+			@RequestParam(name = "price", required = false) Integer price,
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
 			Model model) {
 
@@ -37,6 +37,9 @@ public class HouseController {
 		if (keyword != null && !keyword.isEmpty()) {
 
 			housePage = houseRepository.findByNameLikeOrAddressLike("%" + keyword + "%", "%" + keyword + "%", pageable);
+			
+			
+			
 
 		} else if (area != null && !area.isEmpty()) {
 
@@ -44,8 +47,9 @@ public class HouseController {
 
 		} else if (price != null) {
 
-			//housePage = houseRepository.findByPriceLessThanEqual(price, pageable);
+			housePage = houseRepository.findByPriceLessThanEqual(price, pageable);
 
+			
 		} else {
 
 			housePage = houseRepository.findAll(pageable);
