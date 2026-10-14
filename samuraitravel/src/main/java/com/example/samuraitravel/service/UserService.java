@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.samuraitravel.entity.Role;
 import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.form.SignupForm;
+import com.example.samuraitravel.form.UserEditForm;
 import com.example.samuraitravel.repository.RoleRepository;
 import com.example.samuraitravel.repository.UserRepository;
 
@@ -50,10 +51,32 @@ public class UserService {
 		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
 
 		user.setRole(role);
-		
+
 		user.setEnabled(false);
 
 		return userRepository.save(user);
+	}
+
+	@Transactional
+
+	public void update(UserEditForm userEditForm) {
+
+		User user = userRepository.getReferenceById(userEditForm.getId());
+
+		user.setName(userEditForm.getName());
+
+		user.setFurigana(userEditForm.getFurigana());
+
+		user.setPostalCode(userEditForm.getPostalCode());
+
+		user.setAddress(userEditForm.getAddress());
+
+		user.setPhoneNumber(userEditForm.getPhoneNumber());
+
+		user.setEmail(userEditForm.getEmail());
+
+		userRepository.save(user);
+
 	}
 
 	public boolean isEmailRegistered(String email) {
@@ -62,18 +85,27 @@ public class UserService {
 
 		return user != null;
 	}
-	
-	public boolean isSamePassword(String password,String passwordConfirmation) {
-		
+
+	public boolean isSamePassword(String password, String passwordConfirmation) {
+
 		return password.equals(passwordConfirmation);
 	}
-	
+
 	@Transactional
-	
+
 	public void enableUser(User user) {
-		
+
 		user.setEnabled(true);
-		
+
 		userRepository.save(user);
 	}
+
+	public boolean isEmailChanged(UserEditForm userEditForm) {
+
+		User curreUser = userRepository.getReferenceById(userEditForm.getId());
+
+		return !userEditForm.getEmail().equals(curreUser.getEmail());
+
+	}
+
 }
