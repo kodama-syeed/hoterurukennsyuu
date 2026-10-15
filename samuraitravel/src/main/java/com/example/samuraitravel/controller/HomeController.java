@@ -27,10 +27,10 @@ public class HomeController {
 
 	public String index(Model model) {
 		
-		List<House> newHouse=houseRepository.findTop10ByOrderByCreatedAtDesc();
+		List<House> newHouses=houseRepository.findTop10ByOrderByCreatedAtDesc();
 		
-		model.addAttribute("newHouse",newHouse);
+		model.addAttribute("newHouses",newHouses);
 		
-		return "/index";
+		return "index";
 	}
 }
